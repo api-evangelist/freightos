@@ -1,0 +1,107 @@
+aid: freightos
+name: Freightos
+review:
+  question: Does Freightos expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-05'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Freightos's documented developer surface
+    (the public Shipping Calculator, the Freight Rate Estimator, the Duties
+    HS-code API, and the CO2 Calculation API) is request/response REST/HTTP over
+    HTTPS with JSON (and XML on the Shipping Calculator) - there is no
+    server-push transport (WebSocket or SSE) documented on any of these. Freight
+    events such as rate changes, booking status, and shipment/milestone updates
+    are described as being delivered to partner systems via automated updates
+    and integrations (TMS/ERP), which are provisioned per partner and not
+    published as a public WebSocket, so there was no documented streaming
+    transport on Freightos's own public API to model.
+findings:
+  summary: |
+    Freightos does not publish a documented public WebSocket API. Freightos
+    (NASDAQ CRGO) runs a freight booking marketplace and, via WebCargo by
+    Freightos, a rate-management and eBooking platform for forwarders and
+    carriers. Its developer portal (developers.freightos.com and the legacy
+    developer.freightos.com) documents JSON/HTTP APIs for freight-rate
+    estimation, HS-code duties classification, and CO2 emissions, and the public
+    marketplace exposes the Shipping Calculator at
+    https://ship.freightos.com/api/shippingCalculator (GET or POST, JSON or
+    XML). Bookable live rates, real-time eBooking, and shipment tracking are
+    partner-gated and integrated into forwarder/carrier TMS and ERP systems.
+    Across all of these, the transport is request/response HTTP - no realtime,
+    bidirectional, or streaming WebSocket (ws:// or wss://) endpoint is
+    documented on Freightos's own API as of the review date.
+  accessModel: |
+    Mixed. The public Shipping Calculator marketplace endpoint needs no API key
+    for public price-range data (subject to Freightos attribution terms); a
+    private Custom Site key unlocks a subscriber's own rates. The developer-
+    portal estimator, duties, and CO2 APIs are documented as beta and provided
+    as-is, with access provisioned to registered developers/partners. WebCargo
+    booking and shipment/tracking capabilities are partner-gated under
+    commercial agreements (forwarders, carriers, TMS/ERP/RTTV partners) rather
+    than open self-service. Booking and tracking endpoints in the catalog entry
+    are modeled, not fully publicly documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://ship.freightos.com/api
+      documented: true
+      note: Public Shipping Calculator quote endpoint. GET with URL params or POST; JSON or XML responses.
+    - protocol: REST
+      scheme: https
+      documented: true
+      note: Developer-portal Freight Rate Estimator, Duties, and CO2 APIs - JSON over HTTPS, provisioned per developer/partner.
+    - protocol: REST
+      scheme: https
+      documented: false
+      note: WebCargo eBooking and shipment/tracking surfaces - partner-gated, integrated into TMS/ERP; not fully publicly documented.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere on Freightos's public developer portal or marketplace API as of the review date.
+  endpointsConfirmedRest:
+    - GET  https://ship.freightos.com/api/shippingCalculator
+    - POST https://ship.freightos.com/api/shippingCalculator
+  endpointsModeled:
+    - POST developers.freightos.com Freight Rate Estimator - freightEstimates (documented route, exact host provisioned per partner)
+    - Duties API - HS-code classification from free-text commodity description (developer portal)
+    - CO2 Calculation API - EU-standard emissions estimate per leg/mode (developer portal internalutility)
+    - WebCargo Booking API - live bookable capacity, eBooking, booking status (partner-gated)
+    - Shipment Management and Tracking API - documents, messaging, milestones, status updates (partner-gated)
+sources:
+  - url: https://developers.freightos.com/apis
+    type: Documentation
+    note: Developer portal API index - estimator, duties, CO2, freight tools. JS-rendered; content confirmed via search snippets.
+  - url: https://developer.freightos.com/apis
+    type: Documentation
+    note: Legacy developer portal API documentation index.
+  - url: https://ship.freightos.com/api/shippingCalculator
+    type: APIReference
+    note: Public Shipping Calculator - GET/POST, JSON/XML, price and transit ranges; API key param for private Custom Site rates. Beta / as-is.
+  - url: https://developers.freightos.com/docs/freightos---freight-estimator/1/overview
+    type: APIReference
+    note: Freight Rate Estimator API overview and freightEstimates POST route.
+  - url: https://developers.freightos.com/docs/internalutility/1/overview
+    type: APIReference
+    note: CO2 Calculation API overview.
+  - url: https://developer.freightos.com/getting-started-freightos-integrations
+    type: Documentation
+    note: Integration model - authentication, endpoints (quotes, bookings, tracking), XML/JSON data formats.
+  - url: https://www.webcargo.co/
+    type: Website
+    note: WebCargo by Freightos - air/ocean pricing and eBooking across 55+ carriers for forwarders.
+  - url: https://github.com/Freightos/API
+    type: SourceCode
+    note: Freightos/API GitHub repo (Apache-2.0); minimal content, no full public spec.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists on Freightos's own public API. The
+    documented developer APIs (Shipping Calculator, Freight Rate Estimator,
+    Duties, CO2) are request/response HTTP, and the booking/tracking surfaces
+    are partner-gated HTTP integrations delivered into TMS/ERP systems - not a
+    documented public server-push transport. No AsyncAPI document was created
+    because there is no public streaming transport on Freightos's own API to
+    model.

@@ -1,0 +1,90 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Freightos
+providerId: freightos
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Freight
+- Logistics
+- Shipping
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Freightos spend. Freightos does not bill its APIs on a posted
+  per-call rate card. Public Shipping Calculator price-range data is free with
+  attribution. Developer-portal APIs (Estimator, Duties, CO2) are beta and
+  provisioned per developer. The material commercial cost is on the transaction
+  and subscription side - freight bookings on the Freightos Marketplace and
+  WebCargo/SaaS subscriptions for forwarders and carriers - rather than a metered
+  API fee. Cost management here is mostly about the freight/booking spend that
+  flows through the integration, plus any negotiated partner platform fees.
+notes: >-
+  Per-unit API rates are not published and are not reconciled here. Freightos is
+  a public company (NASDAQ CRGO); confirm marketplace transaction fees and
+  WebCargo subscription terms directly during reconciliation.
+sources:
+- https://www.freightos.com/
+- https://developers.freightos.com/apis
+- https://www.webcargo.co/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Freightos
+serviceCategory: Logistics and Freight
+billingModel:
+  pricingCategory: Commercial Agreement
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Freightos and WebCargo
+  ServiceCategory: Logistics and Freight
+  ProviderName: Freightos
+  PublisherName: Freightos
+  InvoiceIssuerName: Freightos
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Commercial Agreement
+meters:
+- name: freight_bookings
+  description: Freight shipments booked through the Freightos Marketplace or WebCargo eBooking; billed as freight/transaction spend, not an API fee.
+  unit: bookings
+  aggregation: sum
+  dimensions:
+  - account
+  - mode
+  - lane
+- name: estimate_requests
+  description: Freight estimate/quote requests via the Shipping Calculator or Estimator API; no posted per-call charge.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+- name: platform_subscription
+  description: WebCargo/SaaS subscription and any negotiated partner platform fees for booking and tracking access.
+  unit: months
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track freight/booking spend and estimate-request volume per lane and mode flowing through the integration.
+- name: Allocation
+  description: Map bookings and platform subscription fees to internal cost centers, shippers, or business units.
+- name: Optimization
+  description: Use estimate and CO2 APIs to compare modes and lanes before booking; consolidate to negotiated carrier/partner terms.
+- name: Accountability
+  description: Assign an owner for the Freightos/WebCargo relationship and review monthly freight spend against budget and partner terms.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

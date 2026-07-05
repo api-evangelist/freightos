@@ -1,0 +1,59 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Freightos
+providerId: freightos
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Freight
+- Logistics
+- Shipping
+- Rate Limiting
+- Quotas
+description: >-
+  Freightos does not publish fixed numeric rate limits for its public or
+  developer-portal APIs. The public Shipping Calculator returns price-range data
+  under fair-use / attribution terms rather than a stated per-minute cap. The
+  developer-portal APIs (Estimator, Duties, CO2) are beta and provisioned per
+  developer, with any throttles governed by the issued credentials. WebCargo
+  booking and tracking limits are set by partner agreements and the connected
+  carrier systems. Clients should implement retry-with-backoff and honor
+  standard HTTP throttling responses.
+notes: >-
+  No per-account or per-endpoint numeric limits are documented as of the review
+  date. Confirm any quotas on the issued API key or partner agreement during
+  reconciliation.
+sources:
+- https://ship.freightos.com/api/shippingCalculator
+- https://developers.freightos.com/apis
+- https://developer.freightos.com/getting-started-freightos-integrations
+responseCodes:
+  throttled: 429
+limits:
+- name: Public Shipping Calculator
+  scope: client
+  metric: requests
+  limit: not published (fair use plus attribution)
+  notes: Public price-range data; no stated numeric per-minute cap, subject to Freightos terms of service.
+- name: Developer Portal APIs
+  scope: account
+  metric: requests
+  limit: not published (beta, per-credential)
+  notes: Estimator, Duties, and CO2 APIs are beta and provisioned per developer; throttles tied to issued credentials.
+- name: WebCargo Booking and Tracking
+  scope: account
+  metric: requests
+  limit: per partner agreement
+  notes: Governed by commercial partner terms and connected carrier/eBooking systems.
+policies:
+- name: Attribution
+  description: Public Shipping Calculator data must be used with a clearly visible Freightos credit and link per the terms of service.
+- name: HTTPS Only
+  description: Requests must be submitted over HTTPS.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

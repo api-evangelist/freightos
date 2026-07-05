@@ -1,0 +1,105 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Freightos
+providerId: freightos
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Freight
+- Logistics
+- Shipping
+- Rates
+- Booking
+- Plans
+description: >-
+  Freightos does not publish a public, self-service API price list. Access is
+  tiered by relationship. Public marketplace price-range data via the Shipping
+  Calculator is free to consume with attribution and no API key. Developer-
+  portal APIs (Freight Rate Estimator, Duties, CO2) are documented as beta and
+  provided as-is, provisioned to registered developers/partners. Bookable live
+  rates, WebCargo eBooking, and shipment tracking are commercial, partner-gated
+  capabilities negotiated with Freightos/WebCargo (forwarders, carriers, TMS/
+  ERP partners). Exact per-call or subscription rates are not published and are
+  not reconciled here.
+notes: >-
+  Freightos is a public company (NASDAQ CRGO); its platform revenue includes
+  marketplace transaction fees and WebCargo/SaaS subscriptions rather than a
+  posted API rate card. Verify current commercial terms directly with Freightos
+  or WebCargo during reconciliation.
+sources:
+- https://www.freightos.com/
+- https://developers.freightos.com/apis
+- https://ship.freightos.com/api/shippingCalculator
+- https://www.webcargo.co/
+plans:
+- id: freightos-public-marketplace
+  name: Public Marketplace (Shipping Calculator)
+  type: free
+  description: >-
+    Public price-range and transit-time data from the Freightos Marketplace via
+    the Shipping Calculator endpoint. No API key required; use is subject to
+    Freightos terms including visible attribution and a link back to Freightos.
+  entries:
+  - label: Public Quote Requests
+    name: public_quotes
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (attribution required; public price-range data)
+    userMultiplied: false
+  elements:
+  - name: Shipping Calculator API
+  - name: Price and Transit Ranges
+- id: freightos-developer-beta
+  name: Developer Portal (Beta APIs)
+  type: free
+  description: >-
+    Registered developer/partner access to the beta developer-portal APIs -
+    Freight Rate Estimator, Duties (HS-code) classification, and CO2 emissions.
+    Documented as beta and provided as-is; provisioned per developer.
+  entries:
+  - label: Developer API Access
+    name: developer_access
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: beta - provisioned per developer (rates not published)
+    userMultiplied: false
+  elements:
+  - name: Freight Rate Estimator API
+  - name: Duties API
+  - name: CO2 Calculation API
+- id: freightos-partner-commercial
+  name: Partner / Commercial (WebCargo Booking and Tracking)
+  type: enterprise
+  description: >-
+    Commercial, partner-gated access to bookable live rates, WebCargo real-time
+    eBooking across 55+ carriers, and shipment management/tracking, integrated
+    into forwarder and carrier TMS/ERP systems under negotiated agreements.
+  entries:
+  - label: Partner Agreement
+    name: partner_agreement
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales (negotiated commercial terms)
+    userMultiplied: false
+  elements:
+  - name: WebCargo Booking API
+  - name: Live Bookable Rates
+  - name: Shipment Management and Tracking API
+  - name: TMS and ERP Integration
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
