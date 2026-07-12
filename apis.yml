@@ -139,6 +139,8 @@ apis:
     TMS/ERP. Endpoints modeled - provisioned per partner and not publicly
     documented in full.
 common:
+- type: DomainSecurity
+  url: security/freightos-domain-security.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/freightos
 - type: Website
