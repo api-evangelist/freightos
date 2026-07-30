@@ -14,7 +14,19 @@ description: >-
   under commercial agreements. Most developer-portal APIs are documented as beta
   and provided as-is, and full access is provisioned per partner rather than via
   open self-service signup.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: open
+  trial: false
+  try_now: true
+  public: true
+  label: Freemium · Open access
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/freightos.png
 tags:
 - Freight
 - Logistics
