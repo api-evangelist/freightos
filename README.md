@@ -1,4 +1,4 @@
-# Freightos (freightos)
+# Freightos
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,83 +64,109 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Freightos (NASDAQ CRGO) operates a global freight booking marketplace and, through WebCargo by Freightos, a rate-management and eBooking platform used by freight forwarders and carriers to price and book air, ocean, and trucking shipments in real time across 55+ carriers. Freightos publishes a developer portal (`developers.freightos.com`, with a legacy portal at `developer.freightos.com`) exposing freight-rate estimation, HS-code duties classification, and CO2 emissions APIs, plus the public Shipping Calculator on the marketplace at `https://ship.freightos.com/api/shippingCalculator`.
+Freightos (NASDAQ CRGO) operates a global freight booking marketplace and, through WebCargo by Freightos, a rate-management and eBooking platform used by freight forwarders and carriers to price and book air, ocean, and trucking shipments in real time across 55+ carriers. Freightos publishes a developer portal (developers.freightos.com / developer.freightos.com) with freight-rate estimation, HS-code duties classification, and CO2 emissions APIs, plus the public Shipping Calculator on the marketplace. Bookable live rates, eBooking, and shipment tracking are offered to forwarder, carrier, and TMS/ERP partners under commercial agreements. Most developer-portal APIs are documented as beta and provided as-is, and full access is provisioned per partner rather than via open self-service signup.
 
-**Access model (be honest about it):** Freightos's API surface is mixed. The public Shipping Calculator returns marketplace price-range data with no API key (subject to Freightos attribution terms); a private Custom Site API key unlocks a subscriber's own rates. The developer-portal Estimator, Duties, and CO2 APIs are documented as **beta / provided as-is** and are provisioned to registered developers/partners. The WebCargo **booking (eBooking)** and **shipment/tracking** capabilities are **partner-gated** under commercial agreements (forwarders, carriers, and TMS/ERP/RTTV partners) rather than open self-service. Where the full endpoint surface is not publicly documented, this entry marks endpoints as **modeled** rather than fabricating a complete API.
+**Areas:** Freight · Logistics · Shipping · Freight Marketplace · Air Cargo · Ocean Freight · Rates · Booking
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/freightos/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/freightos/refs/heads/main/apis.yml)
+## Freightos on APIs.io
 
-## Tags
+Everything profiled for Freightos is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/freightos/](https://apis.io/providers/freightos/)** — or go straight to one of the APIs or properties below.
 
-- Freight
-- Logistics
-- Shipping
-- Freight Marketplace
-- Air Cargo
-- Ocean Freight
-- Rates
-- Booking
+### APIs (6)
 
-## Timestamps
+- [Freightos Shipping Calculator API](https://apis.io/apis/freightos/freightos-shipping-calculator-api/) — Public marketplace quote endpoint returning freight price ranges (min/max), transit-time ranges, and shipping mode (air, LCL, FCL, trucking) for a given…
+- [Freightos Freight Rate Estimator API](https://apis.io/apis/freightos/freightos-freight-rate-estimator-api/) — Developer-portal JSON API that returns instant freight estimates for air, ocean, and trucking across core global import/export lanes, drawn from Freightos…
+- [Freightos Duties API](https://apis.io/apis/freightos/freightos-duties-api/) — HS-code classification API that takes a free-text commodity description and returns a ranked list of matching Harmonized System (HS) codes with match…
+- [Freightos CO2 Calculation API](https://apis.io/apis/freightos/freightos-co2-calculation-api/) — Emissions API returning EU-standard CO2 estimates across air, ocean, and trucking modes for a shipment leg or route, for carbon reporting and greener…
+- [WebCargo Booking API](https://apis.io/apis/freightos/freightos-webcargo-booking-api/) — Partner-gated booking surface behind WebCargo by Freightos, giving freight forwarders and carriers live, bookable air/ocean capacity and real-time eBooking…
+- [Freightos Shipment Management and Tracking API](https://apis.io/apis/freightos/freightos-shipment-tracking-api/) — Partner-gated shipment lifecycle surface for managing shipments across providers - documentation management, messaging, milestone tracking, and shipment…
 
-- **Created:** 2026-07-05
-- **Modified:** 2026-07-05
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Freightos Shipping Calculator API
+#### Security (1)
 
-Public marketplace quote endpoint returning freight price ranges (min/max), transit-time ranges, and shipping mode (air, LCL, FCL, trucking) for a given origin, destination, weight, and load type. Supports GET with URL parameters or POST for richer requests, and JSON or XML responses. Public marketplace rates require no key (subject to attribution terms); private Custom Site rates use an API key parameter. Documented as beta / provided as-is.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://ship.freightos.com/api/shippingCalculator](https://ship.freightos.com/api/shippingCalculator)
-- **Base URL:** `https://ship.freightos.com/api`
+- [Freightos Domain Security](https://apis.io/security/freightos/freightos-domain-security/)
 
-### Freightos Freight Rate Estimator API
+#### Plans and pricing (1)
 
-Developer-portal JSON API that returns instant freight estimates for air, ocean, and trucking across core global import/export lanes, drawn from Freightos Marketplace live rates and a large historical rate database. The documented route is a POST that accepts origin, destination, and load definition and returns estimated cost and transit-time ranges per leg. Endpoints modeled from portal docs; access is provisioned per developer/partner.
+Published plans, tiers and prices.
 
-- **Human URL:** [https://developers.freightos.com/docs/freightos---freight-estimator/1/overview](https://developers.freightos.com/docs/freightos---freight-estimator/1/overview)
+- [Freightos Plans Pricing](https://apis.io/plans/freightos/freightos-plans-pricing/)
 
-### Freightos Duties API
+#### Rate limits (1)
 
-HS-code classification API that takes a free-text commodity description and returns a ranked list of matching Harmonized System (HS) codes with match probabilities and descriptions, supporting duty estimation for US and international import/export. Documented on the developer portal as a beta API; endpoints modeled.
+Published request limits.
 
-- **Human URL:** [https://developers.freightos.com/apis](https://developers.freightos.com/apis)
+- [Freightos Rate Limits](https://apis.io/rate-limits/freightos/freightos-rate-limits/)
 
-### Freightos CO2 Calculation API
+#### FinOps (1)
 
-Emissions API returning EU-standard CO2 estimates across air, ocean, and trucking modes for a shipment leg or route, for carbon reporting and greener routing decisions. Documented on the developer portal as a beta utility API; endpoints modeled.
+What the API costs to run, by operation.
 
-- **Human URL:** [https://developers.freightos.com/docs/internalutility/1/overview](https://developers.freightos.com/docs/internalutility/1/overview)
+- [Freightos Finops](https://apis.io/finops/freightos/freightos-finops/)
 
-### WebCargo Booking API
+## Where to find this API
 
-Partner-gated booking surface behind WebCargo by Freightos, giving freight forwarders and carriers live, bookable air/ocean capacity and real-time eBooking across 55+ carriers (Lufthansa, Air France KLM, IAG Cargo, United, and others), plus booking status updates. Exposed to forwarder, carrier, and TMS/ERP partners under commercial agreements rather than open self-service. Endpoints modeled — not publicly documented in full.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Human URL:** [https://www.webcargo.co/](https://www.webcargo.co/)
-
-### Freightos Shipment Management and Tracking API
-
-Partner-gated shipment lifecycle surface for managing shipments across providers — documentation management, messaging, milestone tracking, and shipment status updates — typically integrated into a forwarder or shipper TMS/ERP. Endpoints modeled — provisioned per partner and not publicly documented in full.
-
-- **Human URL:** [https://developer.freightos.com/getting-started-freightos-integrations](https://developer.freightos.com/getting-started-freightos-integrations)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/freightos)
 - [Website](https://www.freightos.com/)
 - [Documentation](https://developers.freightos.com/apis)
-- [GitHub Organization](https://github.com/Freightos)
-- [Plans](plans/freightos-plans-pricing.yml)
-- [Rate Limits](rate-limits/freightos-rate-limits.yml)
-- [Fin Ops](finops/freightos-finops.yml)
 - [Blog](https://www.freightos.com/blog/)
+- [GitHub](https://github.com/Freightos)
 
-## Review
+## API Evangelist rating
 
-A WebSocket review is recorded in [review.yml](review.yml): Freightos does **not** expose a documented public WebSocket API. Its public and developer-portal APIs are request/response HTTP (JSON, plus XML on the Shipping Calculator), and booking/tracking are partner-gated HTTP integrations into TMS/ERP systems — no `ws://`/`wss://` endpoint is documented.
+**Kin Score 9.7** — minimal · rubric 0.24.0 · scored 2026-10-17
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 9.5 |
+| Access clarity | 7.9 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 0.6** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 5.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/freightos/](https://apis.io/providers/freightos/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Freightos: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/freightos/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
